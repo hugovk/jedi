@@ -36,7 +36,7 @@ setup(name='jedi',
       install_requires=['parso>=0.8.3,<0.9.0'],
       extras_require={
           'testing': [
-              'pytest<7.0.0',
+              'pytest',
               # docopt for sith doctests
               'docopt',
               # coloroma for colored debug output
@@ -97,6 +97,7 @@ setup(name='jedi',
           'Programming Language :: Python :: 3.9',
           'Programming Language :: Python :: 3.10',
           'Programming Language :: Python :: 3.11',
+          'Programming Language :: Python :: 3.12',
           'Topic :: Software Development :: Libraries :: Python Modules',
           'Topic :: Text Editors :: Integrated Development Environments (IDE)',
           'Topic :: Utilities',

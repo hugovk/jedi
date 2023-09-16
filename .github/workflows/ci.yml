@@ -1,17 +1,21 @@
 name: ci
 on: [push, pull_request]
 
+env:
+  FORCE_COLOR: 1
+
 jobs:
   tests:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-20.04, windows-2019]
-        python-version: ["3.11", "3.10", "3.9", "3.8", "3.7", "3.6"]
+        python-version: ["3.12", "3.11", "3.10", "3.9", "3.8", "3.7", "3.6"]
         environment: ['3.8', '3.11', '3.10', '3.9', '3.7', '3.6', 'interpreter']
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -23,6 +27,7 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+          allow-prereleases: true
 
       - name: Install dependencies
         run: 'pip install .[testing]'
@@ -36,7 +41,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -53,7 +58,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
